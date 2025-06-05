@@ -24,5 +24,7 @@
   "item.enderitemod.smithing_template.enderite_upgrade.ingredients": "Enderite Ingot",
   "upgrade.enderitemod.enderite_upgrade": "Enderite Upgrade",
 
+  "tag.item.enderitemod.enderite_tool_materials":  "Enderite Tool Materials",
+
   "trim_material.enderitemod.enderite": "Enderite Material"
 }

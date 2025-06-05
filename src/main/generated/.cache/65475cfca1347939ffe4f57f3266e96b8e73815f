@@ -1,7 +1,0 @@
-// 1.21	2024-06-21T22:36:41.586638	Simple Enderite Mod/Tags for minecraft:block
-b2757d1baceab57f477cc64e3f76540006f5e36d data/minecraft/tags/block/mineable/pickaxe.json
-46a7357b4a702d41b212cf8e36fd1ab9ade55eb0 data/minecraft/tags/block/incorrect_for_diamond_tool.json
-b2757d1baceab57f477cc64e3f76540006f5e36d data/minecraft/tags/block/dragon_immune.json
-b2757d1baceab57f477cc64e3f76540006f5e36d data/fabric/tags/block/needs_tool_level_4.json
-d731c786cb9be668be87ad35fda3c8f4c3b1b081 data/minecraft/tags/block/beacon_base_blocks.json
-35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/enderitemod/tags/block/incorrect_for_enderite_tool.json

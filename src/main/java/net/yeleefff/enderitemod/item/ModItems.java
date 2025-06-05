@@ -2,72 +2,65 @@ package net.yeleefff.enderitemod.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.component.type.ToolComponent;
 import net.minecraft.item.*;
+import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.registry.Registry;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.Util;
 import net.yeleefff.enderitemod.EnderiteMod;
 import net.yeleefff.enderitemod.mixin.NetheriteUpgradeSlotTexturesInvoker;
 
 import java.util.List;
+import java.util.function.Function;
 
 import static net.yeleefff.enderitemod.EnderiteMod.MOD_ID;
 
 public class ModItems {
 
-    public static final Item ENDERITE_SCRAP = registerItems("enderite_scrap",
-            new Item(new Item.Settings().fireproof()));
-    public static final Item ENDERITE_INGOT = registerItems("enderite_ingot",
-            new Item(new Item.Settings().fireproof()));
+    public static final Item ENDERITE_SCRAP = registerItems("enderite_scrap", Item::new,
+            new Item.Settings().fireproof());
+    public static final Item ENDERITE_INGOT = registerItems("enderite_ingot", Item::new,
+            new Item.Settings().fireproof());
 
     public static final Item ENDERITE_UPGRADE_SMITHING_TEMPLATE = registerItems("enderite_upgrade_smithing_template",
-            new SmithingTemplateItem(
-                    Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.applies_to"))).formatted(Formatting.BLUE),
-                    Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.ingredients"))).formatted(Formatting.BLUE),
-                    Text.translatable(Util.createTranslationKey("upgrade", Identifier.of(MOD_ID,"enderite_upgrade"))).formatted(Formatting.GRAY),
-                    Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.base_slot_description"))),
-                    Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.additions_slot_description"))),
-                    NetheriteUpgradeSlotTexturesInvoker.invokeGetNetheriteUpgradeEmptyBaseSlotTextures(),
-                    NetheriteUpgradeSlotTexturesInvoker.invokeGetNetheriteUpgradeEmptyAdditionsSlotTextures()));
+            (settings) -> new SmithingTemplateItem(
+                Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.applies_to"))).formatted(Formatting.BLUE),
+                Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.ingredients"))).formatted(Formatting.BLUE),
+                Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.base_slot_description"))),
+                Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.additions_slot_description"))),
+                NetheriteUpgradeSlotTexturesInvoker.invokeGetNetheriteUpgradeEmptyBaseSlotTextures(),
+                NetheriteUpgradeSlotTexturesInvoker.invokeGetNetheriteUpgradeEmptyAdditionsSlotTextures(),
+                settings),
+            new Item.Settings().rarity(Rarity.UNCOMMON));
 
-    public static final Item ENDERITE_SWORD = registerItems("enderite_sword",
-            new SwordItem(ModToolMaterials.ENDERITE,
-                    new Item.Settings().maxCount(1).fireproof()
-                            .attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.ENDERITE, 8, -2.4f))));
+    public static final Item ENDERITE_SWORD = registerItems("enderite_sword", Item::new,
+            new Item.Settings().sword(ModToolMaterials.ENDERITE, 8, -2.4f).maxCount(1).fireproof());
+    public static final Item ENDERITE_PICKAXE = registerItems("enderite_pickaxe", Item::new,
+            new Item.Settings().pickaxe(ModToolMaterials.ENDERITE,  6, -2.8f).maxCount(1).fireproof());
     public static final Item ENDERITE_SHOVEL = registerItems("enderite_shovel",
-            new ShovelItem(ModToolMaterials.ENDERITE,
-                    new Item.Settings().maxCount(1).fireproof()
-                            .attributeModifiers(ShovelItem.createAttributeModifiers(ModToolMaterials.ENDERITE,0.5f, -3f))));
-    public static final Item ENDERITE_PICKAXE = registerItems("enderite_pickaxe",
-            new PickaxeItem(ModToolMaterials.ENDERITE,
-                    new Item.Settings().maxCount(1).fireproof()
-                            .attributeModifiers(PickaxeItem.createAttributeModifiers(ModToolMaterials.ENDERITE, 6, -2.8f))));
+            (settings) -> new ShovelItem(ModToolMaterials.ENDERITE, 0.5f, -3f, settings),
+            new Item.Settings().maxCount(1).fireproof());
     public static final Item ENDERITE_AXE = registerItems("enderite_axe",
-            new AxeItem(ModToolMaterials.ENDERITE,
-                    new Item.Settings().maxCount(1).fireproof()
-                            .attributeModifiers(AxeItem.createAttributeModifiers(ModToolMaterials.ENDERITE, 10, -3f))));
+            (settings) -> new AxeItem(ModToolMaterials.ENDERITE, 10, -3f, settings),
+            new Item.Settings().maxCount(1).fireproof());
     public static final Item ENDERITE_HOE = registerItems("enderite_hoe",
-            new HoeItem(ModToolMaterials.ENDERITE,
-                    new Item.Settings().maxCount(1).fireproof()
-                            .attributeModifiers(HoeItem.createAttributeModifiers(ModToolMaterials.ENDERITE, 0, 0f))));
+            (settings) -> new HoeItem(ModToolMaterials.ENDERITE, 0, 0f, settings),
+            new Item.Settings().maxCount(1).fireproof());
 
-    public static final Item ENDERITE_HELMET = registerItems("enderite_helmet",
-            new ArmorItem(ModArmorMaterials.ENDERITE, ArmorItem.Type.HELMET,
-                    new Item.Settings().maxCount(1).fireproof()));
-    public static final Item ENDERITE_CHESTPLATE = registerItems("enderite_chestplate",
-            new ArmorItem(ModArmorMaterials.ENDERITE, ArmorItem.Type.CHESTPLATE,
-                    new Item.Settings().maxCount(1).fireproof()));
-    public static final Item ENDERITE_LEGGINGS = registerItems("enderite_leggings",
-            new ArmorItem(ModArmorMaterials.ENDERITE, ArmorItem.Type.LEGGINGS,
-                    new Item.Settings().maxCount(1).fireproof()));
-    public static final Item ENDERITE_BOOTS = registerItems("enderite_boots",
-            new ArmorItem(ModArmorMaterials.ENDERITE, ArmorItem.Type.BOOTS,
-                    new Item.Settings().maxCount(1).fireproof()));
+    public static final Item ENDERITE_HELMET = registerItems("enderite_helmet", Item::new,
+            new Item.Settings().armor(ModArmorMaterials.ENDERITE, EquipmentType.HELMET).maxCount(1).fireproof());
+    public static final Item ENDERITE_CHESTPLATE = registerItems("enderite_chestplate", Item::new,
+            new Item.Settings().armor(ModArmorMaterials.ENDERITE, EquipmentType.CHESTPLATE).maxCount(1).fireproof());
+    public static final Item ENDERITE_LEGGINGS = registerItems("enderite_leggings", Item::new,
+            new Item.Settings().armor(ModArmorMaterials.ENDERITE, EquipmentType.LEGGINGS).maxCount(1).fireproof());
+    public static final Item ENDERITE_BOOTS = registerItems("enderite_boots", Item::new,
+            new Item.Settings().armor(ModArmorMaterials.ENDERITE, EquipmentType.BOOTS).maxCount(1).fireproof());
 
     public static final List<Item> ENDERITE_TOOLS_AND_ARMOR_LIST = List.of(ModItems.ENDERITE_AXE, ModItems.ENDERITE_PICKAXE, ModItems.ENDERITE_SHOVEL, ModItems.ENDERITE_HOE, ModItems.ENDERITE_SWORD,
             ModItems.ENDERITE_HELMET, ModItems.ENDERITE_CHESTPLATE, ModItems.ENDERITE_LEGGINGS, ModItems.ENDERITE_BOOTS);
@@ -93,12 +86,17 @@ public class ModItems {
         entries.add(ENDERITE_HOE);
     }
 
-    private static Item registerItems(String name, Item item) {
-        return Registry.register(Registries.ITEM, Identifier.of(EnderiteMod.MOD_ID, name), item);
+    private static RegistryKey<Item> keyOf(String id) {
+        return RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, id));
+    }
+
+    private static Item registerItems(String id, Function<Item.Settings, Item> factory, Item.Settings settings) {
+        Item item = factory.apply(settings.registryKey(keyOf(id)));
+        return Registry.register(Registries.ITEM, Identifier.of(MOD_ID, id), item);
     }
 
     public static void registerModItems() {
-        EnderiteMod.LOGGER.debug("Registering Mod Items for " + EnderiteMod.MOD_ID);
+        EnderiteMod.LOGGER.debug("Registering Mod Items for " + MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemsToIngredientsItemGroup);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(ModItems::addItemsToCombatItemGroup);
