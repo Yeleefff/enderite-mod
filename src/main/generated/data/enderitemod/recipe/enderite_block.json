@@ -3,9 +3,7 @@
   "category": "building",
   "group": "enderite",
   "key": {
-    "#": {
-      "item": "enderitemod:enderite_ingot"
-    }
+    "#": "enderitemod:enderite_ingot"
   },
   "pattern": [
     "###",

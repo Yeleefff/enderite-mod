@@ -14,8 +14,10 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SmeltingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.yeleefff.enderitemod.EnderiteMod;
 import net.yeleefff.enderitemod.block.ModBlocks;
 import net.yeleefff.enderitemod.item.ModItems;
+import net.yeleefff.enderitemod.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -71,9 +73,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
             }
 
             public void offerEnderiteUpgradeRecipe(RecipeExporter exporter, Item input, RecipeCategory category, Item result) {
-                SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.ENDERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.ofItems(input), Ingredient.ofItems(ModItems.ENDERITE_INGOT), category, result)
-                        .criterion("has_enderite_ingot", this.conditionsFromItem(ModItems.ENDERITE_INGOT))
-                        .offerTo(exporter, "enderitemod:" + RecipeGenerator.getItemPath(result) + "_smithing");
+                SmithingTransformRecipeJsonBuilder.create(Ingredient.ofItem(ModItems.ENDERITE_UPGRADE_SMITHING_TEMPLATE), Ingredient.ofItem(input), this.ingredientFromTag(ModTags.ENDERITE_TOOL_MATERIALS), category, result)
+                        .criterion("has_enderite_ingot", this.conditionsFromTag(ModTags.ENDERITE_TOOL_MATERIALS))
+                        .offerTo(exporter, EnderiteMod.MOD_ID + RecipeGenerator.getItemPath(result) + "_smithing");
             }
         };
     }

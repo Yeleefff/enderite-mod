@@ -3,18 +3,10 @@
   "category": "misc",
   "group": "enderite",
   "ingredients": [
-    {
-      "item": "enderitemod:enderite_scrap"
-    },
-    {
-      "item": "enderitemod:enderite_scrap"
-    },
-    {
-      "item": "minecraft:ender_eye"
-    },
-    {
-      "item": "minecraft:ender_eye"
-    }
+    "enderitemod:enderite_scrap",
+    "enderitemod:enderite_scrap",
+    "minecraft:ender_eye",
+    "minecraft:ender_eye"
   ],
   "result": {
     "count": 1,

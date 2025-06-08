@@ -7,13 +7,10 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.util.Identifier;
 import net.yeleefff.enderitemod.item.ModItems;
 import net.yeleefff.enderitemod.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
-
-import static net.yeleefff.enderitemod.EnderiteMod.MOD_ID;
 
 public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     public ModItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
@@ -21,7 +18,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     }
 
     private static RegistryKey<Item> keyOf(Item item) {
-        return RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, item.toString()));
+        return RegistryKey.of(RegistryKeys.ITEM, item.getRegistryEntry().registryKey().getValue());
     }
 
 
@@ -36,7 +33,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(keyOf(ModItems.ENDERITE_LEGGINGS))
                 .add(keyOf(ModItems.ENDERITE_BOOTS));
 
-        builder(ModTags.ENDERITE_TOOL_MATERIALS);
+        builder(ModTags.ENDERITE_TOOL_MATERIALS)
+                .add(keyOf(ModItems.ENDERITE_INGOT));
 
         builder(ModTags.REPAIRS_ENDERITE_ARMOR)
                 .add(keyOf(ModItems.ENDERITE_INGOT));

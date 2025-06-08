@@ -14,15 +14,13 @@ import net.yeleefff.enderitemod.util.ModTags;
 
 import java.util.concurrent.CompletableFuture;
 
-import static net.yeleefff.enderitemod.EnderiteMod.MOD_ID;
-
 public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     public ModBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
     }
 
     private static RegistryKey<Block> keyOf(Block block) {
-        return RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(MOD_ID, block.toString()));
+        return RegistryKey.of(RegistryKeys.BLOCK, block.getRegistryEntry().registryKey().getValue());
     }
 
     @Override
