@@ -17,40 +17,21 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         super(output, completableFuture);
     }
 
-    private static RegistryKey<Item> keyOf(Item item) {
-        return RegistryKey.of(RegistryKeys.ITEM, item.getRegistryEntry().registryKey().getValue());
-    }
-
-
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        builder(ItemTags.BEACON_PAYMENT_ITEMS)
-                .add(keyOf(ModItems.ENDERITE_INGOT));
+        valueLookupBuilder(ItemTags.BEACON_PAYMENT_ITEMS)
+                .add(ModItems.ENDERITE_INGOT);
 
-        builder(ItemTags.TRIMMABLE_ARMOR)
-                .add(keyOf(ModItems.ENDERITE_HELMET))
-                .add(keyOf(ModItems.ENDERITE_CHESTPLATE))
-                .add(keyOf(ModItems.ENDERITE_LEGGINGS))
-                .add(keyOf(ModItems.ENDERITE_BOOTS));
+        valueLookupBuilder(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.ENDERITE_HELMET)
+                .add(ModItems.ENDERITE_CHESTPLATE)
+                .add(ModItems.ENDERITE_LEGGINGS)
+                .add(ModItems.ENDERITE_BOOTS);
 
-        builder(ModTags.ENDERITE_TOOL_MATERIALS)
-                .add(keyOf(ModItems.ENDERITE_INGOT));
+        valueLookupBuilder(ModTags.ENDERITE_TOOL_MATERIALS)
+                .add(ModItems.ENDERITE_INGOT);
 
-        builder(ModTags.REPAIRS_ENDERITE_ARMOR)
-                .add(keyOf(ModItems.ENDERITE_INGOT));
-
-//        getOrCreateTagBuilder(ItemTags.BEACON_PAYMENT_ITEMS)
-//                .add(ModItems.ENDERITE_INGOT);
-//
-//        getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
-//                .add(ModItems.ENDERITE_HELMET)
-//                .add(ModItems.ENDERITE_CHESTPLATE)
-//                .add(ModItems.ENDERITE_LEGGINGS)
-//                .add(ModItems.ENDERITE_BOOTS);
-//
-//        getOrCreateTagBuilder(ModTags.ENDERITE_TOOL_MATERIALS);
-//
-//        getOrCreateTagBuilder(ModTags.REPAIRS_ENDERITE_ARMOR)
-//                .add(ModItems.ENDERITE_INGOT);
+        valueLookupBuilder(ModTags.REPAIRS_ENDERITE_ARMOR)
+                .add(ModItems.ENDERITE_INGOT);
     }
 }

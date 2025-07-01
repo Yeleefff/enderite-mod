@@ -22,7 +22,6 @@ import java.util.function.Function;
 import static net.yeleefff.enderitemod.EnderiteMod.MOD_ID;
 
 public class ModItems {
-
     public static final Item ENDERITE_SCRAP = registerItems("enderite_scrap", Item::new,
             new Item.Settings().fireproof());
     public static final Item ENDERITE_INGOT = registerItems("enderite_ingot", Item::new,
