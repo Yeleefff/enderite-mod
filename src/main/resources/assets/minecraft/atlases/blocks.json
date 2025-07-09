@@ -1,12 +1,12 @@
 {
   "sources": [
     {
-      "type": "paletted_permutations",
+      "type": "minecraft:paletted_permutations",
       "textures": [
-        "trims/items/leggings_trim",
-        "trims/items/chestplate_trim",
-        "trims/items/helmet_trim",
-        "trims/items/boots_trim"
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/boots_trim"
       ],
       "palette_key": "trims/color_palettes/trim_palette",
       "permutations": {

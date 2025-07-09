@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": "#enderitemod:enderite_tool_materials",
+    "base": "minecraft:netherite_helmet",
+    "result": {
+        "id": "enderitemod:enderite_helmet"
+    },
+    "template": "enderitemod:enderite_upgrade_smithing_template"
+}

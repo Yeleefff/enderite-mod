@@ -2,6 +2,7 @@ package net.yeleefff.enderitemod.item;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
@@ -25,10 +26,10 @@ public class ModItems {
     public static final Item ENDERITE_SCRAP = registerItems("enderite_scrap", Item::new,
             new Item.Settings().fireproof());
     public static final Item ENDERITE_INGOT = registerItems("enderite_ingot", Item::new,
-            new Item.Settings().fireproof());
+            new Item.Settings().fireproof().trimMaterial(ModArmorTrimMaterials.ENDERITE));
 
     public static final Item ENDERITE_UPGRADE_SMITHING_TEMPLATE = registerItems("enderite_upgrade_smithing_template",
-            (settings) -> new SmithingTemplateItem(
+            settings -> new SmithingTemplateItem(
                 Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.applies_to"))).formatted(Formatting.BLUE),
                 Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.ingredients"))).formatted(Formatting.BLUE),
                 Text.translatable(Util.createTranslationKey("item", Identifier.of(MOD_ID,"smithing_template.enderite_upgrade.base_slot_description"))),
@@ -43,13 +44,13 @@ public class ModItems {
     public static final Item ENDERITE_PICKAXE = registerItems("enderite_pickaxe", Item::new,
             new Item.Settings().pickaxe(ModToolMaterials.ENDERITE,  6, -2.8f).maxCount(1).fireproof());
     public static final Item ENDERITE_SHOVEL = registerItems("enderite_shovel",
-            (settings) -> new ShovelItem(ModToolMaterials.ENDERITE, 0.5f, -3f, settings),
+            settings -> new ShovelItem(ModToolMaterials.ENDERITE, 0.5f, -3f, settings),
             new Item.Settings().maxCount(1).fireproof());
     public static final Item ENDERITE_AXE = registerItems("enderite_axe",
-            (settings) -> new AxeItem(ModToolMaterials.ENDERITE, 10, -3f, settings),
+            settings -> new AxeItem(ModToolMaterials.ENDERITE, 10, -3f, settings),
             new Item.Settings().maxCount(1).fireproof());
     public static final Item ENDERITE_HOE = registerItems("enderite_hoe",
-            (settings) -> new HoeItem(ModToolMaterials.ENDERITE, 0, 0f, settings),
+            settings -> new HoeItem(ModToolMaterials.ENDERITE, 0, 0f, settings),
             new Item.Settings().maxCount(1).fireproof());
 
     public static final Item ENDERITE_HELMET = registerItems("enderite_helmet", Item::new,
@@ -64,27 +65,6 @@ public class ModItems {
     public static final List<Item> ENDERITE_TOOLS_AND_ARMOR_LIST = List.of(ModItems.ENDERITE_AXE, ModItems.ENDERITE_PICKAXE, ModItems.ENDERITE_SHOVEL, ModItems.ENDERITE_HOE, ModItems.ENDERITE_SWORD,
             ModItems.ENDERITE_HELMET, ModItems.ENDERITE_CHESTPLATE, ModItems.ENDERITE_LEGGINGS, ModItems.ENDERITE_BOOTS);
 
-    private static void addItemsToIngredientsItemGroup(FabricItemGroupEntries entries) {
-        entries.add(ENDERITE_SCRAP);
-        entries.add(ENDERITE_INGOT);
-        entries.add(ENDERITE_UPGRADE_SMITHING_TEMPLATE);
-    }
-
-    private static void addItemsToCombatItemGroup(FabricItemGroupEntries entries) {
-        entries.add(ENDERITE_SWORD);
-        entries.add(ENDERITE_HELMET);
-        entries.add(ENDERITE_CHESTPLATE);
-        entries.add(ENDERITE_LEGGINGS);
-        entries.add(ENDERITE_BOOTS);
-    }
-
-    private static void addItemsToToolsItemGroup(FabricItemGroupEntries entries) {
-        entries.add(ENDERITE_SHOVEL);
-        entries.add(ENDERITE_PICKAXE);
-        entries.add(ENDERITE_AXE);
-        entries.add(ENDERITE_HOE);
-    }
-
     private static RegistryKey<Item> keyOf(String id) {
         return RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, id));
     }
@@ -97,8 +77,23 @@ public class ModItems {
     public static void registerModItems() {
         EnderiteMod.LOGGER.debug("Registering Mod Items for " + MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemsToIngredientsItemGroup);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(ModItems::addItemsToCombatItemGroup);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(ModItems::addItemsToToolsItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
+            entries.add(ENDERITE_SCRAP);
+            entries.add(ENDERITE_INGOT);
+            entries.add(ENDERITE_UPGRADE_SMITHING_TEMPLATE);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
+            entries.add(ENDERITE_SWORD);
+            entries.add(ENDERITE_HELMET);
+            entries.add(ENDERITE_CHESTPLATE);
+            entries.add(ENDERITE_LEGGINGS);
+            entries.add(ENDERITE_BOOTS);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
+            entries.add(ENDERITE_SHOVEL);
+            entries.add(ENDERITE_PICKAXE);
+            entries.add(ENDERITE_AXE);
+            entries.add(ENDERITE_HOE);
+        });
     }
 }
