@@ -6,6 +6,7 @@ import net.minecraft.item.equipment.trim.ArmorTrimMaterial;
 import net.minecraft.registry.*;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TextColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.yeleefff.enderitemod.EnderiteMod;
@@ -19,7 +20,7 @@ public class ModArmorTrimMaterials {
 
     public static void bootstrap(Registerable<ArmorTrimMaterial> registry) {
         ArmorTrimAssets assets = ArmorTrimAssets.of("enderite", Map.of(ENDERITE_ASSET_KEY, "enderite_darker"));
-        Text text = Text.translatable(Util.createTranslationKey("trim_material", ENDERITE.getValue())).fillStyle(Style.EMPTY.withColor(268581));
+        Text text = Text.translatable(Util.createTranslationKey("trim_material", ENDERITE.getValue())).fillStyle(Style.EMPTY.withColor(TextColor.parse("#1A5551").getOrThrow()));
 
         registry.register(ENDERITE, new ArmorTrimMaterial(assets, text));
     }

@@ -4,7 +4,7 @@
     "color": "#1A5551",
     "translate": "trim_material.enderitemod.enderite"
   },
-  "override_armor_materials": {
+  "override_armor_assets": {
     "enderitemod:enderite": "enderite_darker"
   }
 }

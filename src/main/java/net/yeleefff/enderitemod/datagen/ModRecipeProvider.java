@@ -47,8 +47,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .offerTo(exporter, "enderitemod:" + RecipeGenerator.getItemPath(ModItems.ENDERITE_SCRAP) + "_from_blasting_" + RecipeGenerator.getItemPath(ModBlocks.ENDERITE_ORE));
 
                 createShapeless(RecipeCategory.MISC, ModItems.ENDERITE_INGOT)
-                        .input(ModItems.ENDERITE_SCRAP, 2)
-                        .input(Items.ENDER_EYE, 2)
+                        .input(ModItems.ENDERITE_SCRAP, 4)
+                        .input(Items.ENDER_EYE, 4)
                         .group("enderite")
                         .criterion("has_enderite_scrap", this.conditionsFromItem(ModItems.ENDERITE_SCRAP))
                         .offerTo(exporter);

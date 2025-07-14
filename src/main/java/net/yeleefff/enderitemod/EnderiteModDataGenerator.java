@@ -21,6 +21,7 @@ public class EnderiteModDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModModelProvider::new);
         pack.addProvider(ModRecipeProvider::new);
         pack.addProvider(ModWorldGenerator::new);
+        pack.addProvider(ModArmorTrimMaterialProvider::new);
     }
 
     @Override
