@@ -1,19 +1,16 @@
 {
   "fabric:load_conditions": [
     {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:all_mods_loaded",
-        "values" : ["enderscape"]
-      }
+      "condition": "fabric:all_mods_loaded",
+      "values" : ["enderscape"]
     }
   ],
 
-  "feature": "enderitemod:enderite_ore",
+  "feature": "enderitemod:enderite_ore_enderscape",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 100
+      "count": 50
     },
     {
       "type": "minecraft:in_square"
@@ -23,10 +20,10 @@
       "height": {
         "type": "minecraft:trapezoid",
         "max_inclusive": {
-          "absolute": 25
+          "absolute": 40
         },
         "min_inclusive": {
-          "absolute": 10
+          "absolute": -20
         }
       }
     },

@@ -10,7 +10,6 @@ import net.yeleefff.enderitemod.item.ModItems;
 
 public class ModLootTableModifiers {
     private static final Identifier END_CITY_CHEST_ID = Identifier.of("minecraft", "chests/end_city_treasure");
-    private static final Identifier OCEAN_RUIN_COLD_ARCHAEOLOGY = Identifier.of("minecraft", "archaeology/ocean_ruin_cold");
 
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {

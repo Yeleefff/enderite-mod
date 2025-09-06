@@ -18,13 +18,16 @@ import java.util.List;
 
 public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> ENDERITE_ORE_PLACED_KEY = registerKey("enderite_ore_placed");
+    public static final RegistryKey<PlacedFeature> ENDERITE_ORE_PLACED_ENDERSCAPE_KEY = registerKey("enderite_ore_placed_enderscape");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         register(context, ENDERITE_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.ENDERITE_ORE_KEY),
-                ModOrePlacement.modifiersWithCount(1, // Veins per chunk
-                        HeightRangePlacementModifier.trapezoid(YOffset.fixed(10), YOffset.fixed(25))));
+                ModOrePlacement.modifiersWithCount(1, HeightRangePlacementModifier.trapezoid(YOffset.fixed(10), YOffset.fixed(25))));
+
+        register(context, ENDERITE_ORE_PLACED_ENDERSCAPE_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.ENDERITE_ORE_KEY),
+                ModOrePlacement.modifiersWithCount(50, HeightRangePlacementModifier.trapezoid(YOffset.fixed(-55), YOffset.fixed(55))));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {

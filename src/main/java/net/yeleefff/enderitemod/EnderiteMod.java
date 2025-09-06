@@ -1,8 +1,8 @@
 package net.yeleefff.enderitemod;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.item.SmithingTemplateItem;
 import net.yeleefff.enderitemod.block.ModBlocks;
 import net.yeleefff.enderitemod.item.ModItems;
 import net.yeleefff.enderitemod.util.ModLootTableModifiers;
@@ -18,9 +18,12 @@ public class EnderiteMod implements ModInitializer {
 	public void onInitialize() {
 		ModOreGeneration.generateOres();
 //		ModArmorMaterials.registerModArmorMaterials();
-
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModLootTableModifiers.modifyLootTables();
 	}
+
+    public static boolean isPresent(String modid) {
+        return FabricLoader.getInstance().isModLoaded(modid);
+    }
 }

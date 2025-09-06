@@ -1,0 +1,28 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values" : ["enderscape"]
+    }
+  ],
+
+  "type": "minecraft:ore",
+  "config": {
+    "discard_chance_on_air_exposure": 0.33,
+    "size": 3,
+    "targets": [
+      {
+        "state": {"Name": "enderitemod:enderite_ore"},
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "c:end_stones"}
+      },
+      {
+        "state": {"Name": "enderitemod:enderite_ore"},
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "enderscape:mirestone"}
+      }
+    ]
+  }
+}
