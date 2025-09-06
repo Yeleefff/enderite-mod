@@ -55,9 +55,9 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "maven.modrinth:enderscape:3es7ehfa"
-    modImplementation "maven.modrinth:mixson:CdodrxH1"
-    modImplementation "dev.isxander:yet-another-config-lib:3.7.1+1.21.6-fabric"
+//    modImplementation "maven.modrinth:enderscape:3es7ehfa"
+//    modImplementation "maven.modrinth:mixson:CdodrxH1"
+//    modImplementation "dev.isxander:yet-another-config-lib:3.7.1+1.21.6-fabric"
 }
 
 processResources {
