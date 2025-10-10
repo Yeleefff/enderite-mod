@@ -1,7 +1,6 @@
 package net.yeleefff.enderitemod;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.yeleefff.enderitemod.block.ModBlocks;
 import net.yeleefff.enderitemod.item.ModItems;
@@ -17,7 +16,6 @@ public class EnderiteMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModOreGeneration.generateOres();
-//		ModArmorMaterials.registerModArmorMaterials();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModLootTableModifiers.modifyLootTables();

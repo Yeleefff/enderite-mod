@@ -78,22 +78,15 @@ public class ModItems {
         EnderiteMod.LOGGER.debug("Registering Mod Items for " + MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-            entries.add(ENDERITE_SCRAP);
-            entries.add(ENDERITE_INGOT);
-            entries.add(ENDERITE_UPGRADE_SMITHING_TEMPLATE);
+            entries.addAfter(Items.NETHERITE_INGOT, ENDERITE_SCRAP, ENDERITE_INGOT);
+            entries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ENDERITE_UPGRADE_SMITHING_TEMPLATE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
-            entries.add(ENDERITE_SWORD);
-            entries.add(ENDERITE_HELMET);
-            entries.add(ENDERITE_CHESTPLATE);
-            entries.add(ENDERITE_LEGGINGS);
-            entries.add(ENDERITE_BOOTS);
+            entries.addAfter(Items.NETHERITE_SWORD, ENDERITE_SWORD);
+            entries.addAfter(Items.NETHERITE_BOOTS, ENDERITE_HELMET, ENDERITE_CHESTPLATE, ENDERITE_LEGGINGS, ENDERITE_BOOTS);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {
-            entries.add(ENDERITE_SHOVEL);
-            entries.add(ENDERITE_PICKAXE);
-            entries.add(ENDERITE_AXE);
-            entries.add(ENDERITE_HOE);
+            entries.addAfter(Items.NETHERITE_HOE, ENDERITE_SHOVEL, ENDERITE_PICKAXE, ENDERITE_AXE, ENDERITE_HOE);
         });
     }
 }
