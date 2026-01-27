@@ -1,15 +1,18 @@
 package net.yeleefff.enderitemod.world.feature;
 
 import net.minecraft.world.gen.placementmodifier.*;
-
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import java.util.List;
 
 public class ModOrePlacement {
     public static List<PlacementModifier> modifiers(PlacementModifier countModifier, PlacementModifier heightModifier) {
-        return List.of(countModifier, SquarePlacementModifier.of(), heightModifier, BiomePlacementModifier.of());
+        return List.of(countModifier, InSquarePlacement.spread(), heightModifier, BiomeFilter.biome());
     }
 
     public static List<PlacementModifier> modifiersWithCount(int count, PlacementModifier heightModifier) {
-        return modifiers(CountPlacementModifier.of(count), heightModifier);
+        return modifiers(CountPlacement.of(count), heightModifier);
     }
 }

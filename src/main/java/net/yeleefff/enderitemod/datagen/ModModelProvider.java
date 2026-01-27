@@ -2,11 +2,11 @@ package net.yeleefff.enderitemod.datagen;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.client.data.BlockStateModelGenerator;
-import net.minecraft.client.data.ItemModelGenerator;
-import net.minecraft.client.data.Models;
-import net.minecraft.client.data.TexturedModel;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.resources.Identifier;
 import net.yeleefff.enderitemod.block.ModBlocks;
 import net.yeleefff.enderitemod.item.ModArmorMaterials;
 import net.yeleefff.enderitemod.item.ModItems;
@@ -17,31 +17,31 @@ public class ModModelProvider extends FabricModelProvider{
     }
 
     @Override
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        blockStateModelGenerator.registerSingleton(ModBlocks.ENDERITE_ORE, TexturedModel.CUBE_COLUMN);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ENDERITE_BLOCK);
+    public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
+        blockStateModelGenerator.createTrivialBlock(ModBlocks.ENDERITE_ORE, TexturedModel.COLUMN);
+        blockStateModelGenerator.createTrivialCube(ModBlocks.ENDERITE_BLOCK);
     }
 
     @Override
-    public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.ENDERITE_SCRAP, Models.GENERATED);
-        itemModelGenerator.register(ModItems.ENDERITE_INGOT, Models.GENERATED);
+    public void generateItemModels(ItemModelGenerators itemModelGenerator) {
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_SCRAP, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_INGOT, ModelTemplates.FLAT_ITEM);
 
-        itemModelGenerator.register(ModItems.ENDERITE_SWORD, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.ENDERITE_AXE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.ENDERITE_PICKAXE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.ENDERITE_SHOVEL, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.ENDERITE_HOE, Models.HANDHELD);
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_SWORD, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_AXE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_PICKAXE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_SHOVEL, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_HOE, ModelTemplates.FLAT_HANDHELD_ITEM);
 
-        itemModelGenerator.registerArmor(ModItems.ENDERITE_HELMET, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("helmet"), false);
-        itemModelGenerator.registerArmor(ModItems.ENDERITE_CHESTPLATE, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("chestplate"), false);
-        itemModelGenerator.registerArmor(ModItems.ENDERITE_LEGGINGS, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("leggings"), false);
-        itemModelGenerator.registerArmor(ModItems.ENDERITE_BOOTS, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("boots"), false);
+        itemModelGenerator.generateTrimmableItem(ModItems.ENDERITE_HELMET, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("helmet"), false);
+        itemModelGenerator.generateTrimmableItem(ModItems.ENDERITE_CHESTPLATE, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("chestplate"), false);
+        itemModelGenerator.generateTrimmableItem(ModItems.ENDERITE_LEGGINGS, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("leggings"), false);
+        itemModelGenerator.generateTrimmableItem(ModItems.ENDERITE_BOOTS, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("boots"), false);
 
-        itemModelGenerator.register(ModItems.ENDERITE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_UPGRADE_SMITHING_TEMPLATE, ModelTemplates.FLAT_ITEM);
     }
 
     public static Identifier getTrimAssetIdPrefix(String prefix) {
-        return Identifier.of("enderitemod", "trims/items/" + prefix + "_trim");
+        return Identifier.fromNamespaceAndPath("enderitemod", "trims/items/" + prefix + "_trim");
     }
 }

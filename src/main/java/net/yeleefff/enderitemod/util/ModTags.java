@@ -1,10 +1,10 @@
 package net.yeleefff.enderitemod.util;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.yeleefff.enderitemod.EnderiteMod;
 
 public class ModTags {
@@ -18,10 +18,10 @@ public class ModTags {
     public static final TagKey<Item> ARMORS = ofItem("c", "armors");
 
     private static TagKey<Block> ofBlock(String nameSpace, String name) {
-        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(nameSpace, name));
+        return TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(nameSpace, name));
     }
 
     private static TagKey<Item> ofItem(String nameSpace, String name) {
-        return TagKey.of(RegistryKeys.ITEM, Identifier.of(nameSpace, name));
+        return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(nameSpace, name));
     }
 }

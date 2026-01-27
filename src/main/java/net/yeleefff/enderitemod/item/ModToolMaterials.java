@@ -1,6 +1,6 @@
 package net.yeleefff.enderitemod.item;
 
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.world.item.ToolMaterial;
 import net.yeleefff.enderitemod.util.ModTags;
 
 public class ModToolMaterials {

@@ -1,31 +1,35 @@
 package net.yeleefff.enderitemod.item;
 
-import net.minecraft.item.equipment.EquipmentAsset;
-import net.minecraft.item.equipment.trim.ArmorTrimAssets;
-import net.minecraft.item.equipment.trim.ArmorTrimMaterial;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.registry.*;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.text.TextColor;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Util;
+import net.minecraft.world.item.equipment.EquipmentAsset;
+import net.minecraft.world.item.equipment.trim.MaterialAssetGroup;
+import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.yeleefff.enderitemod.EnderiteMod;
 
 import java.util.Map;
 
 public class ModArmorTrimMaterials {
-    static RegistryKey<? extends Registry<EquipmentAsset>> REGISTRY_KEY = RegistryKey.ofRegistry(Identifier.ofVanilla("equipment_asset"));
-    public static final RegistryKey<ArmorTrimMaterial> ENDERITE = RegistryKey.of(RegistryKeys.TRIM_MATERIAL, Identifier.of(EnderiteMod.MOD_ID, "enderite"));
-    public static final RegistryKey<EquipmentAsset> ENDERITE_ASSET_KEY = RegistryKey.of(REGISTRY_KEY, Identifier.of(EnderiteMod.MOD_ID, "enderite"));
+    static ResourceKey<? extends Registry<EquipmentAsset>> REGISTRY_KEY = ResourceKey.createRegistryKey(Identifier.withDefaultNamespace("equipment_asset"));
+    public static final ResourceKey<TrimMaterial> ENDERITE = ResourceKey.create(Registries.TRIM_MATERIAL, Identifier.fromNamespaceAndPath(EnderiteMod.MOD_ID, "enderite"));
+    public static final ResourceKey<EquipmentAsset> ENDERITE_ASSET_KEY = ResourceKey.create(REGISTRY_KEY, Identifier.fromNamespaceAndPath(EnderiteMod.MOD_ID, "enderite"));
 
-    public static void bootstrap(Registerable<ArmorTrimMaterial> registry) {
-        ArmorTrimAssets assets = ArmorTrimAssets.of("enderite", Map.of(ENDERITE_ASSET_KEY, "enderite_darker"));
-        Text text = Text.translatable(Util.createTranslationKey("trim_material", ENDERITE.getValue())).fillStyle(Style.EMPTY.withColor(TextColor.parse("#1A5551").getOrThrow()));
+    public static void bootstrap(BootstrapContext<TrimMaterial> registry) {
+        MaterialAssetGroup assets = MaterialAssetGroup.create("enderite", Map.of(ENDERITE_ASSET_KEY, "enderite_darker"));
+        Component text = Component.translatable(Util.makeDescriptionId("trim_material", ENDERITE.identifier())).withStyle(Style.EMPTY.withColor(TextColor.parseColor("#1A5551").getOrThrow()));
 
-        registry.register(ENDERITE, new ArmorTrimMaterial(assets, text));
+        registry.register(ENDERITE, new TrimMaterial(assets, text));
     }
 
-    private static RegistryKey<ArmorTrimMaterial> of(String name) {
-        return RegistryKey.of(RegistryKeys.TRIM_MATERIAL, Identifier.ofVanilla(name));
+    private static ResourceKey<TrimMaterial> of(String name) {
+        return ResourceKey.create(Registries.TRIM_MATERIAL, Identifier.withDefaultNamespace(name));
     }
 }

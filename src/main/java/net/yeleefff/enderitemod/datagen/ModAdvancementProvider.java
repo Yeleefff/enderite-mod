@@ -2,14 +2,14 @@ package net.yeleefff.enderitemod.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementEntry;
-import net.minecraft.advancement.AdvancementFrame;
-import net.minecraft.advancement.AdvancementRewards;
-import net.minecraft.advancement.criterion.InventoryChangedCriterion;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.AdvancementType;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.yeleefff.enderitemod.EnderiteMod;
 import net.yeleefff.enderitemod.block.ModBlocks;
 import net.yeleefff.enderitemod.item.ModItems;
@@ -18,48 +18,48 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class ModAdvancementProvider extends FabricAdvancementProvider {
-    public ModAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    public ModAdvancementProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(output, registryLookup);
     }
 
     @Override
-    public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
-        AdvancementEntry obtainEnderiteOre = Advancement.Builder.create().parent(Identifier.of("end/root")).display(
+    public void generateAdvancement(HolderLookup.Provider registryLookup, Consumer<AdvancementHolder> consumer) {
+        AdvancementHolder obtainEnderiteOre = Advancement.Builder.advancement().parent(Identifier.parse("end/root")).display(
                 ModBlocks.ENDERITE_ORE,
-                Text.literal("Hidden in the Void"),
-                Text.literal("Obtain Enderite Debris"),
+                Component.literal("Hidden in the Void"),
+                Component.literal("Obtain Enderite Debris"),
                 null,
-                AdvancementFrame.TASK,
+                AdvancementType.TASK,
                 true,
                 true,
                 false
-            ).criterion("has_enderite_ore", InventoryChangedCriterion.Conditions.items(ModBlocks.ENDERITE_ORE))
-                .build(consumer, EnderiteMod.MOD_ID + ":end/obtain_enderite_ore");
+            ).addCriterion("has_enderite_ore", InventoryChangeTrigger.TriggerInstance.hasItems(ModBlocks.ENDERITE_ORE))
+                .save(consumer, EnderiteMod.MOD_ID + ":end/obtain_enderite_ore");
 
-        AdvancementEntry obtainEnderiteArmor = Advancement.Builder.create().parent(obtainEnderiteOre).display(
+        AdvancementHolder obtainEnderiteArmor = Advancement.Builder.advancement().parent(obtainEnderiteOre).display(
                 ModItems.ENDERITE_CHESTPLATE,
-                Text.literal("Cover Me in Debris: The Sequel"),
-                Text.literal("Get a full set of Enderite armor"),
+                Component.literal("Cover Me in Debris: The Sequel"),
+                Component.literal("Get a full set of Enderite armor"),
                 null,
-                AdvancementFrame.CHALLENGE,
+                AdvancementType.CHALLENGE,
                 true,
                 true,
                 false
             ).rewards(AdvancementRewards.Builder.experience(100))
-                .criterion("enderite_armor", InventoryChangedCriterion.Conditions.items(ModItems.ENDERITE_HELMET, ModItems.ENDERITE_CHESTPLATE, ModItems.ENDERITE_LEGGINGS, ModItems.ENDERITE_BOOTS))
-                .build(consumer, EnderiteMod.MOD_ID + ":end/enderite_armor");
+                .addCriterion("enderite_armor", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ENDERITE_HELMET, ModItems.ENDERITE_CHESTPLATE, ModItems.ENDERITE_LEGGINGS, ModItems.ENDERITE_BOOTS))
+                .save(consumer, EnderiteMod.MOD_ID + ":end/enderite_armor");
 
-        AdvancementEntry obtainEnderiteHoe = Advancement.Builder.create().parent(Identifier.of("husbandry/obtain_netherite_hoe")).display(
+        AdvancementHolder obtainEnderiteHoe = Advancement.Builder.advancement().parent(Identifier.parse("husbandry/obtain_netherite_hoe")).display(
                 ModItems.ENDERITE_HOE,
-                Text.literal("Too Much Dedication"),
-                Text.literal("Use an Enderite Ingot to upgrade a Netherite Hoe after failing to rethink your life choices"),
+                Component.literal("Too Much Dedication"),
+                Component.literal("Use an Enderite Ingot to upgrade a Netherite Hoe after failing to rethink your life choices"),
                 null,
-                AdvancementFrame.CHALLENGE,
+                AdvancementType.CHALLENGE,
                 true,
                 true,
                 true
             ).rewards(AdvancementRewards.Builder.experience(100))
-                .criterion("enderite_hoe", InventoryChangedCriterion.Conditions.items(ModItems.ENDERITE_HOE))
-                .build(consumer, EnderiteMod.MOD_ID + ":husbandry/obtain_enderite_hoe");
+                .addCriterion("enderite_hoe", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ENDERITE_HOE))
+                .save(consumer, EnderiteMod.MOD_ID + ":husbandry/obtain_enderite_hoe");
     }
 }

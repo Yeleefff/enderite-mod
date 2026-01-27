@@ -3,10 +3,10 @@ plugins {
 	id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
+ext.sourceCompatibility = JavaVersion.VERSION_21
+ext.targetCompatibility = JavaVersion.VERSION_21
 
-archivesBaseName = project.archives_base_name
+ext.archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
@@ -51,13 +51,9 @@ sourceSets {
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-//    modImplementation "maven.modrinth:enderscape:3es7ehfa"
-//    modImplementation "maven.modrinth:mixson:CdodrxH1"
-//    modImplementation "dev.isxander:yet-another-config-lib:3.7.1+1.21.6-fabric"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 processResources {
