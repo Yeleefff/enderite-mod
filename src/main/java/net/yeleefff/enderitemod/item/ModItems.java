@@ -58,16 +58,16 @@ public class ModItems {
 
     public static final Item ENDERITE_HELMET = registerItems("enderite_helmet",
             new ArmorItem(ModArmorMaterials.ENDERITE, ArmorItem.Type.HELMET,
-                    new Item.Settings().maxCount(1).fireproof()));
+                    new Item.Settings().maxCount(1).fireproof().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(41))));
     public static final Item ENDERITE_CHESTPLATE = registerItems("enderite_chestplate",
             new ArmorItem(ModArmorMaterials.ENDERITE, ArmorItem.Type.CHESTPLATE,
-                    new Item.Settings().maxCount(1).fireproof()));
+                    new Item.Settings().maxCount(1).fireproof().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(41))));
     public static final Item ENDERITE_LEGGINGS = registerItems("enderite_leggings",
             new ArmorItem(ModArmorMaterials.ENDERITE, ArmorItem.Type.LEGGINGS,
-                    new Item.Settings().maxCount(1).fireproof()));
+                    new Item.Settings().maxCount(1).fireproof().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(41))));
     public static final Item ENDERITE_BOOTS = registerItems("enderite_boots",
             new ArmorItem(ModArmorMaterials.ENDERITE, ArmorItem.Type.BOOTS,
-                    new Item.Settings().maxCount(1).fireproof()));
+                    new Item.Settings().maxCount(1).fireproof().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(41))));
 
     public static final List<Item> ENDERITE_TOOLS_AND_ARMOR_LIST = List.of(ModItems.ENDERITE_AXE, ModItems.ENDERITE_PICKAXE, ModItems.ENDERITE_SHOVEL, ModItems.ENDERITE_HOE, ModItems.ENDERITE_SWORD,
             ModItems.ENDERITE_HELMET, ModItems.ENDERITE_CHESTPLATE, ModItems.ENDERITE_LEGGINGS, ModItems.ENDERITE_BOOTS);
