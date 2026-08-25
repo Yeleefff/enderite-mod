@@ -1,6 +1,6 @@
 package net.yeleefff.enderitemod.block;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -59,8 +59,8 @@ public class ModBlocks {
     public static void registerModBlocks() {
         EnderiteMod.LOGGER.debug("Registering Mod Blocks for " + EnderiteMod.MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> entries.addAfter(Blocks.ANCIENT_DEBRIS, ENDERITE_ORE));
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register(entries -> entries.addAfter(Blocks.NETHERITE_BLOCK, ENDERITE_BLOCK));
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS).register(entries -> entries.addAfter(Blocks.ANCIENT_DEBRIS, ENDERITE_ORE));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register(entries -> entries.insertAfter(Blocks.ANCIENT_DEBRIS, ENDERITE_ORE));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register(entries -> entries.insertAfter(Blocks.NETHERITE_BLOCK, ENDERITE_BLOCK));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register(entries -> entries.insertAfter(Blocks.ANCIENT_DEBRIS, ENDERITE_ORE));
     }
 }

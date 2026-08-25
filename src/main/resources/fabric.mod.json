@@ -3,7 +3,7 @@
   "id": "enderitemod",
   "version": "${version}",
 
-  "name": "Simple Enderite Mod",
+  "name": "Enderite Mod",
   "description": "Adds enderite tools and armour to the game.",
   "authors": [
     "Yeleefff"
@@ -35,7 +35,7 @@
   "depends": {
     "fabricloader": ">=0.16.14",
     "fabric-api": "*",
-    "minecraft": "~1.21",
-    "java": ">=21"
+    "minecraft": ">=26.1",
+    "java": ">=25"
   }
 }

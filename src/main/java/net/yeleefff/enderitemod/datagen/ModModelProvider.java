@@ -1,7 +1,7 @@
 package net.yeleefff.enderitemod.datagen;
 
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.model.ModelTemplates;
@@ -12,7 +12,7 @@ import net.yeleefff.enderitemod.item.ModArmorMaterials;
 import net.yeleefff.enderitemod.item.ModItems;
 
 public class ModModelProvider extends FabricModelProvider{
-    public ModModelProvider(FabricDataOutput output) {
+    public ModModelProvider(FabricPackOutput output) {
         super(output);
     }
 
@@ -32,6 +32,7 @@ public class ModModelProvider extends FabricModelProvider{
         itemModelGenerator.generateFlatItem(ModItems.ENDERITE_PICKAXE, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.ENDERITE_SHOVEL, ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModelGenerator.generateFlatItem(ModItems.ENDERITE_HOE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.ENDERITE_SPEAR, ModelTemplates.FLAT_HANDHELD_ITEM);
 
         itemModelGenerator.generateTrimmableItem(ModItems.ENDERITE_HELMET, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("helmet"), false);
         itemModelGenerator.generateTrimmableItem(ModItems.ENDERITE_CHESTPLATE, ModArmorMaterials.ENDERITE_ASSET_KEYS, getTrimAssetIdPrefix("chestplate"), false);

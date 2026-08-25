@@ -1,11 +1,26 @@
 {
   "layers": {
+    "horse_body": [
+      {
+        "texture": "enderitemod:enderite"
+      }
+    ],
     "humanoid": [
       {
         "texture": "enderitemod:enderite"
       }
     ],
+    "humanoid_baby": [
+      {
+        "texture": "enderitemod:enderite"
+      }
+    ],
     "humanoid_leggings": [
+      {
+        "texture": "enderitemod:enderite"
+      }
+    ],
+    "nautilus_body": [
       {
         "texture": "enderitemod:enderite"
       }

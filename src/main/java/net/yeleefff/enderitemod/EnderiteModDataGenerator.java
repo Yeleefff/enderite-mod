@@ -14,14 +14,14 @@ public class EnderiteModDataGenerator implements DataGeneratorEntrypoint {
     public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-        pack.addProvider(ModAdvancementProvider::new);
-        pack.addProvider(ModBlockTagProvider::new);
-        pack.addProvider(ModItemTagProvider::new);
-        pack.addProvider(ModLootTableProvider::new);
-        pack.addProvider(ModModelProvider::new);
+//        pack.addProvider(ModAdvancementProvider::new);
+//        pack.addProvider(ModBlockTagProvider::new);
+//        pack.addProvider(ModItemTagProvider::new);
+//        pack.addProvider(ModLootTableProvider::new);
+//        pack.addProvider(ModModelProvider::new);
         pack.addProvider(ModRecipeProvider::new);
-        pack.addProvider(ModWorldGenerator::new);
-        pack.addProvider(ModArmorTrimMaterialProvider::new);
+//        pack.addProvider(ModWorldGenerator::new);
+//        pack.addProvider(ModArmorTrimMaterialProvider::new);
     }
 
     @Override

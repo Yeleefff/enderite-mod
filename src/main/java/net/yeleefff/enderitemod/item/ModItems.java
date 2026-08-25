@@ -1,6 +1,6 @@
 package net.yeleefff.enderitemod.item;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -42,10 +42,6 @@ public class ModItems {
                 NetheriteUpgradeSlotTexturesInvoker.invokeGetNetheriteUpgradeEmptyAdditionsSlotTextures(),
                 settings),
             new Item.Properties().rarity(Rarity.UNCOMMON));
-    public static final Item ENDERITE_HORSE_ARMOR = registerItem("enderite_horse_armor", Item::new,
-            new Item.Properties().stacksTo(1).fireResistant().horseArmor(ModArmorMaterials.ENDERITE));
-    public static final Item ENDERITE_NAUTILUS_ARMOR = registerItem("enderite_nautilus_armor", Item::new,
-            new Item.Properties().stacksTo(1).fireResistant().nautilusArmor(ModArmorMaterials.ENDERITE));
 
     public static final Item ENDERITE_SWORD = registerItem("enderite_sword", Item::new,
             new Item.Properties().sword(ModToolMaterials.ENDERITE, 8, -2.4f).stacksTo(1).fireResistant());
@@ -63,7 +59,6 @@ public class ModItems {
     public static final Item ENDERITE_SPEAR = registerItem("enderite_spear", Item::new,
             new Item.Properties().spear(ModToolMaterials.ENDERITE, 1.20f, 1.275f, 3f, 2f, 6.5f, 4.5f, 5.1f, 8f, 4.6f)
                     .stacksTo(1).fireResistant());
-//    TODO: finish adding enderite spear item
 
     public static final Item ENDERITE_HELMET = registerItem("enderite_helmet", Item::new,
             new Item.Properties().humanoidArmor(ModArmorMaterials.ENDERITE, ArmorType.HELMET).stacksTo(1).fireResistant());
@@ -73,10 +68,14 @@ public class ModItems {
             new Item.Properties().humanoidArmor(ModArmorMaterials.ENDERITE, ArmorType.LEGGINGS).stacksTo(1).fireResistant());
     public static final Item ENDERITE_BOOTS = registerItem("enderite_boots", Item::new,
             new Item.Properties().humanoidArmor(ModArmorMaterials.ENDERITE, ArmorType.BOOTS).stacksTo(1).fireResistant());
+    public static final Item ENDERITE_HORSE_ARMOR = registerItem("enderite_horse_armor", Item::new,
+            new Item.Properties().horseArmor(ModArmorMaterials.ENDERITE).stacksTo(1).fireResistant());
+    public static final Item ENDERITE_NAUTILUS_ARMOR = registerItem("enderite_nautilus_armor", Item::new,
+            new Item.Properties().nautilusArmor(ModArmorMaterials.ENDERITE).stacksTo(1).fireResistant());
 
     public static final List<Item> ENDERITE_TOOLS_AND_ARMOR_LIST = List.of(
-            ModItems.ENDERITE_AXE, ModItems.ENDERITE_PICKAXE, ModItems.ENDERITE_SHOVEL, ModItems.ENDERITE_HOE, ModItems.ENDERITE_SWORD, ModItems.ENDERITE_SPEAR,
-            ModItems.ENDERITE_HELMET, ModItems.ENDERITE_CHESTPLATE, ModItems.ENDERITE_LEGGINGS, ModItems.ENDERITE_BOOTS);
+            ENDERITE_AXE, ENDERITE_PICKAXE, ENDERITE_SHOVEL, ENDERITE_HOE, ENDERITE_SWORD, ENDERITE_SPEAR,
+            ENDERITE_HELMET, ENDERITE_CHESTPLATE, ENDERITE_LEGGINGS, ENDERITE_BOOTS, ENDERITE_HORSE_ARMOR, ENDERITE_NAUTILUS_ARMOR);
 
     private static ResourceKey<Item> keyOf(String id) {
         return ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MOD_ID, id));
@@ -90,18 +89,18 @@ public class ModItems {
     public static void registerModItems() {
         EnderiteMod.LOGGER.debug("Registering Mod Items for " + MOD_ID);
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> {
-            entries.addAfter(Items.NETHERITE_INGOT, ENDERITE_SCRAP, ENDERITE_INGOT);
-            entries.addAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ENDERITE_UPGRADE_SMITHING_TEMPLATE);
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register(entries -> {
+            entries.insertAfter(Items.NETHERITE_INGOT, ENDERITE_SCRAP, ENDERITE_INGOT);
+            entries.insertAfter(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, ENDERITE_UPGRADE_SMITHING_TEMPLATE);
         });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(entries -> {
-            entries.addAfter(Items.NETHERITE_HORSE_ARMOR, ENDERITE_HORSE_ARMOR);
-            entries.addAfter(Items.NETHERITE_NAUTILUS_ARMOR, ENDERITE_NAUTILUS_ARMOR);
-            entries.addAfter(Items.NETHERITE_SWORD, ENDERITE_SWORD);
-            entries.addAfter(Items.NETHERITE_BOOTS, ENDERITE_HELMET, ENDERITE_CHESTPLATE, ENDERITE_LEGGINGS, ENDERITE_BOOTS);
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT).register(entries -> {
+            entries.insertAfter(Items.NETHERITE_HORSE_ARMOR, ENDERITE_HORSE_ARMOR);
+            entries.insertAfter(Items.NETHERITE_SWORD, ENDERITE_SWORD);
+            entries.insertAfter(Items.NETHERITE_BOOTS, ENDERITE_HELMET, ENDERITE_CHESTPLATE, ENDERITE_LEGGINGS, ENDERITE_BOOTS);
+            entries.insertAfter(Items.NETHERITE_NAUTILUS_ARMOR, ENDERITE_NAUTILUS_ARMOR);
         });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(entries -> {
-            entries.addAfter(Items.NETHERITE_HOE, ENDERITE_SHOVEL, ENDERITE_PICKAXE, ENDERITE_AXE, ENDERITE_HOE);
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(entries -> {
+            entries.insertAfter(Items.NETHERITE_HOE, ENDERITE_SHOVEL, ENDERITE_PICKAXE, ENDERITE_AXE, ENDERITE_HOE);
         });
     }
 }
