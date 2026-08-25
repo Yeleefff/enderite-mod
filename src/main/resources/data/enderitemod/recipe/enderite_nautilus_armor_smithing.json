@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#enderitemod:enderite_tool_materials",
+  "base": "minecraft:netherite_nautilus_armor",
+  "result": {
+    "id": "enderitemod:enderite_nautilus_armor"
+  },
+  "template": "enderitemod:enderite_upgrade_smithing_template"
+}

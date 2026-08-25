@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#enderitemod:enderite_tool_materials",
+  "base": "minecraft:netherite_spear",
+  "result": {
+    "id": "enderitemod:enderite_spear"
+  },
+  "template": "enderitemod:enderite_upgrade_smithing_template"
+}
